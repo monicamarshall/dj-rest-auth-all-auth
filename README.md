@@ -1,5 +1,5 @@
 # dj-rest-auth, django-allauth, rest_framework_simplejwt, RS256 algorithm
-demo project that demonstrates protecting restful endpoints with dj-rest-auth, django-allauth, rest_framework_simplejwt, rest_framework_simplejwt 4.6.0 AUTH libraries
+demo project that demonstrates protecting restful endpoints with dj-rest-auth, django-allauth, djangorestframework-simplejwt AUTH libraries
 
 Documentation for rest_framework_simplejwt is available at:
 
