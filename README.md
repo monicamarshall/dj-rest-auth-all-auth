@@ -1,5 +1,5 @@
-# rest_framework_simplejwt_RS256
-demo project that demonstrates protecting restful endpoints with the rest_framework_simplejwt 4.6.0 AUTH library
+# dj-rest-auth, django-allauth, rest_framework_simplejwt, RS256 algorithm
+demo project that demonstrates protecting restful endpoints with dj-rest-auth, django-allauth, rest_framework_simplejwt, rest_framework_simplejwt 4.6.0 AUTH libraries
 
 Documentation for rest_framework_simplejwt is available at:
 
@@ -13,7 +13,7 @@ https://medium.com/django-rest/django-rest-framework-jwt-authentication-94bee36f
 https://blog.miguelgrinberg.com/post/json-web-tokens-with-public-key-signatures
 https://www.django-rest-framework.org/api-guide/authentication/
 
-This library is actively maintained and is a spin-off of the unmaintained framework djangorestframework-jwt by jpadilla.
+
 # Prerequisite private/public key:  
 
 A private/public key must be created for enabling the rest_framework_simplejwt 4.6.0 AUTH library to create/refresh JWT tokens with the RS256 algorithm.
