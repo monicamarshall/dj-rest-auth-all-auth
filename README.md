@@ -29,7 +29,7 @@ https://blog.miguelgrinberg.com/post/json-web-tokens-with-public-key-signatures
 
 https://www.django-rest-framework.org/api-guide/authentication/
 
-# djanto-allauth and dj-rest-auth capabilities
+# django-allauth and dj-rest-auth capabilities
 
 Login (account_login)
 
