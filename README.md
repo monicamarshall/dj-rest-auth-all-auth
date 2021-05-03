@@ -7,7 +7,7 @@ https://pypi.org/project/djangorestframework-simplejwt/
 
 https://django-rest-framework-simplejwt.readthedocs.io/en/latest/getting_started.html#
 
-https://www.django-rest-framework.org/api-guide/authentication/#json-web-token-authentication
+https://www.django-rest-framework.org/api-guide/authentication/
 
 https://github.com/iMerica/dj-rest-auth
 
@@ -21,13 +21,15 @@ https://github.com/J-rayX/drfauthproject
 
 Example projects:
 
+https://dev.to/jkaylight/django-rest-framework-authentication-with-dj-rest-auth-4kli
+
 https://simpleisbetterthancomplex.com/tutorial/2018/12/19/how-to-use-jwt-authentication-with-django-rest-framework.html
 
 https://medium.com/django-rest/django-rest-framework-jwt-authentication-94bee36f2af8
 
 https://blog.miguelgrinberg.com/post/json-web-tokens-with-public-key-signatures
 
-https://www.django-rest-framework.org/api-guide/authentication/
+
 
 # django-allauth and dj-rest-auth capabilities
 
