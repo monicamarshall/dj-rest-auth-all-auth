@@ -63,7 +63,7 @@ https://blog.miguelgrinberg.com/post/json-web-tokens-with-public-key-signatures
 
 # Prerequisite: Email server configuration
 
-dj-rest-auth, django-allauth require a valid email for users wanting to register.  Email server configuration is a necessary prerequisite for the auth capabilities to work.  Email configuration settings are located in the application configuration file settings.py for simplicity. 
+dj-rest-auth, django-allauth require a valid email for users wanting to register.  Email server configuration is a necessary prerequisite for the auth capabilities to work.  Email configuration settings are located in the application configuration file settings.py for demo purposes. 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
