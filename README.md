@@ -1,11 +1,21 @@
 # dj-rest-auth, django-allauth, djangorestframework-simplejwt, RS256 algorithm
 demo project that demonstrates protecting restful endpoints with dj-rest-auth, django-allauth, djangorestframework-simplejwt AUTH libraries
 
-Documentation for djangorestframework-simplejwt is available at:
+Documentation for dj-rest-auth, django-allauth, djangorestframework-simplejwt is available at:
 
 https://pypi.org/project/djangorestframework-simplejwt/
 
 https://django-rest-framework-simplejwt.readthedocs.io/en/latest/getting_started.html#
+
+https://www.django-rest-framework.org/api-guide/authentication/#json-web-token-authentication
+
+https://github.com/iMerica/dj-rest-auth
+
+https://dj-rest-auth.readthedocs.io/en/latest/introduction.html
+
+https://dev.to/a_atalla/django-rest-framework-custom-jwt-authentication-5n5
+
+https://github.com/J-rayX/drfauthproject
 
 Example projects:
 
