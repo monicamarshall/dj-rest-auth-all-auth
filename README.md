@@ -43,9 +43,9 @@ https://blog.miguelgrinberg.com/post/json-web-tokens-with-public-key-signatures
 
   djangorestframework-simplejwt==4.6.0   (JWT token create/refresh/verify)
   
-  dj-rest-auth==2.1.4  ( User account management for JWT access to protected resources accessible via Rest URI )
+  dj-rest-auth==2.1.4  ( User account management for JWT access to protected resources via Rest URI )
   
-  django-allauth==0.44.0  ( User account management for JWT access to protected resources accessible via Rest URI )
+  django-allauth==0.44.0  ( User account management for JWT access to protected resources via Rest URI )
 
   cryptography==3.4.7   (create private/public keys)
   
