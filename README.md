@@ -4,13 +4,17 @@ demo project that demonstrates protecting restful endpoints with dj-rest-auth, d
 Documentation for djangorestframework-simplejwt is available at:
 
 https://pypi.org/project/djangorestframework-simplejwt/
+
 https://django-rest-framework-simplejwt.readthedocs.io/en/latest/getting_started.html#
 
 Example projects:
 
 https://simpleisbetterthancomplex.com/tutorial/2018/12/19/how-to-use-jwt-authentication-with-django-rest-framework.html
+
 https://medium.com/django-rest/django-rest-framework-jwt-authentication-94bee36f2af8
+
 https://blog.miguelgrinberg.com/post/json-web-tokens-with-public-key-signatures
+
 https://www.django-rest-framework.org/api-guide/authentication/
 
 
@@ -21,6 +25,10 @@ A private/public key must be created for enabling the rest_framework_simplejwt 4
 In the environment where the cryptography library is installed run the command to create a private and public key. Specify the location of the public/private key in settings.py ( JWT_PUBLIC_KEY_PATH = './publicKey.pem' JWT_PRIVATE_KEY_PATH = './privateKey.pem')
 
   ssh-keygen -t rsa -b 4096
+
+Documentation on python cryptography:
+
+https://blog.miguelgrinberg.com/post/json-web-tokens-with-public-key-signatures
 
 # To run this project:
 
@@ -34,6 +42,10 @@ In the environment where the cryptography library is installed run the command t
   djangorestframework==3.12.4
 
   djangorestframework-simplejwt==4.6.0   (JWT token create/refresh/verify)
+  
+  dj-rest-auth==2.1.4  ( User account management for JWT access to protected resources accessible via Rest URI )
+  
+  django-allauth==0.44.0  ( User account management for JWT access to protected resources accessible via Rest URI )
 
   cryptography==3.4.7   (create private/public keys)
   
