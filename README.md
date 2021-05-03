@@ -49,7 +49,7 @@ E-mail Verification
 
 Social Connections (socialaccount_connections)
 
-# Prerequisite private/public key:  
+# Prerequisite: private/public key 
 
 A private/public key must be created for enabling the rest_framework_simplejwt 4.6.0 AUTH library to create/refresh JWT tokens with the RS256 algorithm.
 
@@ -60,6 +60,26 @@ In the environment where the cryptography library is installed run the command t
 Documentation on python cryptography:
 
 https://blog.miguelgrinberg.com/post/json-web-tokens-with-public-key-signatures
+
+# Prerequisite: Email server configuration
+
+dj-rest-auth, django-allauth require a valid email for users wanting to register.  Email server configuration is a necessary prerequisite for the auth capabilities to work.  Email configuration settings are located in the application configuration file settings.py for simplicity. 
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+#EMAIL_HOST = 'smtp.mail.yahoo.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+#EMAIL_PORT = 465
+EMAIL_HOST_USER = 'jwtdemoapp@gmail.com'
+EMAIL_HOST_PASSWORD = 'jwtdemoapps@ula'
+
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+
+LOGIN_URL = 'http://localhost:8090/users/login'
 
 # To run this project:
 
