@@ -13,6 +13,8 @@ https://github.com/iMerica/dj-rest-auth
 
 https://dj-rest-auth.readthedocs.io/en/latest/introduction.html
 
+https://django-allauth.readthedocs.io/en/latest/
+
 https://dev.to/a_atalla/django-rest-framework-custom-jwt-authentication-5n5
 
 https://github.com/J-rayX/drfauthproject
