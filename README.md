@@ -32,12 +32,19 @@ https://www.django-rest-framework.org/api-guide/authentication/
 # djanto-allauth and dj-rest-auth capabilities
 
 Login (account_login)
+
 Signup (account_signup)
+
 Logout (account_logout)
+
 Password Management
+
 Password Reset (account_reset_password)
+
 E-mails Management (account_email)
+
 E-mail Verification
+
 Social Connections (socialaccount_connections)
 
 # Prerequisite private/public key:  
