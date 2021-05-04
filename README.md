@@ -124,6 +124,37 @@ LOGIN_URL = 'http://localhost:8090/users/login'
   python manage.py createsuperuser (enter the username & password to use when requesting a token)
 
   python manage.py runserver 8088
+  
+# Test django-allauth and dj-rest-auth endpoints
+
+$ curl -X GET  http://localhost:8090/api/students/
+
+{"detail":"Authentication credentials were not provided."}
+
+$ curl -X GET  http://localhost:8090/hello/
+
+{"detail":"Authentication credentials were not provided."}
+monica@DESKTOP-0MV2FVN ~
+
+$ curl -H "Content-Type: application/json" -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjIwMTM4MzkzLCJqdGkiOiJmMGRmYTZjMGVmNDI0NTFmYTgzMDkxZTdmMGNmYWYyZCIsInVzZXJfaWQiOjIsImF1ZCI6Ik1wZGJVc2VycyIsImlzcyI6Ik1wZGJSZXN0QVBJIn0.XJap7x55O-V1SonnqoLarY3egXSVjr0qSUBJu06PokeNMJXAZmlNAT1QqrWXbyJHpW0GAqBqjW2bA5HgE10J-w" -X GET  http://localhost:8090/hello/
+
+{"message":"Hello, World!"}
+
+$ curl -H "Content-Type: application/json" -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjIwMTM4MzkzLCJqdGkiOiJmMGRmYTZjMGVmNDI0NTFmYTgzMDkxZTdmMGNmYWYyZCIsInVzZXJfaWQiOjIsImF1ZCI6Ik1wZGJVc2VycyIsImlzcyI6Ik1wZGJSZXN0QVBJIn0.XJap7x55O-V1SonnqoLarY3egXSVjr0qSUBJu06PokeNMJXAZmlNAT1QqrWXbyJHpW0GAqBqjW2bA5HgE10J-w" -X GET  http://localhost:8090/api/students/
+
+[{"pk":1,"first_name":"Henry","last_name":"Royal","email":"royal@gmail.com","classroom":"Data Structures Java"},{"pk":2,"first_name":"Diana","last_name":"Prin
+cess","email":"diana@gmail.com","classroom":"Lambdas"}]
+
+
+$ curl -H "Content-Type: application/json" -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjIwMTM4MzkzLCJqdGkiOiJmMGRmYTZjMGVmNDI0NTFmYTgzMDkxZTdmMGNmYWYyZCIsInVzZXJfaWQiOjIsImF1ZCI6Ik1wZGJVc2VycyIsImlzcyI6Ik1wZGJSZXN0QVBJIn0.XJap7x55O-V1SonnqoLarY3egXSVjr0qSUBJu06PokeNMJXAZmlNAT1QqrWXbyJHpW0GAqBqjW2bA5HgE10J-w" -X GET  http://localhost:8090/hello/
+
+{"detail":"Given token not valid for any token type","code":"token_not_valid","messages":[{"token_class":"AccessToken","token_type":"access","message":"Token
+is invalid or expired"}]}
+
+$ curl -H "Content-Type: application/json" -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjIwMTM4MzkzLCJqdGkiOiJmMGRmYTZjMGVmNDI0NTFmYTgzMDkxZTdmMGNmYWYyZCIsInVzZXJfaWQiOjIsImF1ZCI6Ik1wZGJVc2VycyIsImlzcyI6Ik1wZGJSZXN0QVBJIn0.XJap7x55O-V1SonnqoLarY3egXSVjr0qSUBJu06PokeNMJXAZmlNAT1QqrWXbyJHpW0GAqBqjW2bA5HgE10J-w" -X GET  http://localhost:8090/api/students/
+
+{"detail":"Given token not valid for any token type","code":"token_not_valid","messages":[{"token_class":"AccessToken","token_type":"access","message":"Token
+is invalid or expired"}]}
 
 # Test AUTH with rest_framework_simplejwt RS256 restful endpoints:
 
