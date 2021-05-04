@@ -77,9 +77,9 @@ EMAIL_PORT = 587
 
 #EMAIL_PORT = 465
 
-EMAIL_HOST_USER = 'jwtdemoapp@gmail.com'
+EMAIL_HOST_USER = 'jwtdemoapp@gmail.com'  ( This is the webapp admin email address that sends an email to users registering with their email for users' email verification )
 
-EMAIL_HOST_PASSWORD = 'jwtdemoapps@ula'
+EMAIL_HOST_PASSWORD = 'jwtdemoapps@ula'    ( This is the webapp admin email account password for sending an email to users registering with their email for users' email verification )
 
 ACCOUNT_EMAIL_REQUIRED = True
 
