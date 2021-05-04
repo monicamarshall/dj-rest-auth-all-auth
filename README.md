@@ -125,7 +125,7 @@ LOGIN_URL = 'http://localhost:8090/users/login'
 
   python manage.py runserver 8088
   
-# Test django-allauth and dj-rest-auth endpoints
+# Test protected resources by django-allauth and dj-rest-auth endpoints
 
 $ curl -X GET  http://localhost:8090/api/students/
 
@@ -155,6 +155,17 @@ $ curl -H "Content-Type: application/json" -H "Authorization: Bearer eyJ0eXAiOiJ
 
 {"detail":"Given token not valid for any token type","code":"token_not_valid","messages":[{"token_class":"AccessToken","token_type":"access","message":"Token
 is invalid or expired"}]}
+
+# Test django-allauth and dj-rest-auth endpoints for Login, Logout, User Registration, Email Verification, Password Reset:
+
+http://localhost:8090/users/login/
+
+http://localhost:8090/users/logout/
+
+http://localhost:8090/users/register/
+
+http://localhost:8090/password-reset/
+
 
 # Test AUTH with rest_framework_simplejwt RS256 restful endpoints:
 
