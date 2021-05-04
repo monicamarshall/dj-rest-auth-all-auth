@@ -113,18 +113,19 @@ LOGIN_URL = 'http://localhost:8090/users/login'
   
 3. Check out the project
 4. Create a database with name 'databasename'.  Postgres configuration is in settings.py
-5. Set up a gmail account for the application admin user to send registration/email verification emails to users wanting to register.
-6. Set up a gmail account for a test user that registers with the application.  The user's email account will be verified by the app admin.
+5. Set up a gmail account for the application admin user to send registration/email verification emails to users wanting to register.  Make sure to allow (move the button to the right) less secure apps in the security section of the newly created gmail account.  
+6. Set up a gmail account for a test user that registers with the application.  The user's email account will be verified by the app admin.  Make sure to allow (move the button to the right) less secure apps in the security section of the newly created gmail account. 
 
 7. cd to the directory that contains manage.py and issue the commands:
 
-  python manage.py makemigrations
+  python manage.py makemigrations in the security section of the newly created gmail account.  
   
   python manage.py migrate
 
   python manage.py createsuperuser (enter the username & password to use when requesting a token)
 
   python manage.py runserver 8090
+8. Access the admin console with the superuser name and password ( step 7 ) and select sites.  Modify the the DOMAIN NAME to 127.0.0.1:8080 ( host address and port number where the application is running) and the DISPLAY NAME (name of the application ).  The domain name and display name will appear in the email that the app admin sends to registering users to verify their email address.
   
 # Test protected resources by django-allauth and dj-rest-auth endpoints
 
