@@ -1,5 +1,6 @@
 # dj-rest-auth, django-allauth, djangorestframework-simplejwt, RS256 algorithm
-demo project that demonstrates protecting restful endpoints with dj-rest-auth, django-allauth, djangorestframework-simplejwt AUTH libraries
+demo project that demonstrates protecting restful endpoints with dj-rest-auth, django-allauth, djangorestframework-simplejwt AUTH libraries.
+This project uses the gmail email server for verifying users' emails when registering.  A valid email is part a necessary piece for user registration besides a valid username and password.  User accounts are managed by the django user management system.
 
 Documentation for dj-rest-auth, django-allauth, djangorestframework-simplejwt is available at:
 
@@ -28,8 +29,6 @@ https://simpleisbetterthancomplex.com/tutorial/2018/12/19/how-to-use-jwt-authent
 https://medium.com/django-rest/django-rest-framework-jwt-authentication-94bee36f2af8
 
 https://blog.miguelgrinberg.com/post/json-web-tokens-with-public-key-signatures
-
-
 
 # django-allauth and dj-rest-auth capabilities
 
@@ -113,9 +112,11 @@ LOGIN_URL = 'http://localhost:8090/users/login'
   psycopg2==2.8.6 (connect to postgres DB)
   
 3. Check out the project
-4. Create a database with name <databasename>.  Postgres configuration is in settings.py
+4. Create a database with name 'databasename'.  Postgres configuration is in settings.py
+5. Set up a gmail account for the application admin user to send registration/email verification emails to users wanting to register.
+6. Set up a gmail account for a test user that registers with the application.  The user's email account will be verified by the app admin.
 
-5. cd to the directory that contains manage.py and issue the commands:
+7. cd to the directory that contains manage.py and issue the commands:
 
   python manage.py makemigrations
   
@@ -123,7 +124,7 @@ LOGIN_URL = 'http://localhost:8090/users/login'
 
   python manage.py createsuperuser (enter the username & password to use when requesting a token)
 
-  python manage.py runserver 8088
+  python manage.py runserver 8090
   
 # Test protected resources by django-allauth and dj-rest-auth endpoints
 
@@ -169,11 +170,11 @@ http://localhost:8090/password-reset/
 
 # Test AUTH with rest_framework_simplejwt RS256 restful endpoints:
 
-1. Obtain an access token.( with valid username and password ).  This url will return an access token and a refresh token to refresh the access token when it expires.  Remember that a new access token can be generated using the refresh token if the refresh token has not expired.  The lifetime of a refresh token is typically longer than the lifetime of an access token.  If the refresh token is expired a new access token can be obtained by submitting login credentials on the request token url.  The url for obtaining an access/refresh token (server running at port 8088 ): http://localhost:8088/api/token/
+1. Obtain an access token.( with valid username and password ).  This url will return an access token and a refresh token to refresh the access token when it expires.  Remember that a new access token can be generated using the refresh token if the refresh token has not expired.  The lifetime of a refresh token is typically longer than the lifetime of an access token.  If the refresh token is expired a new access token can be obtained by submitting login credentials on the request token url.  The url for obtaining an access/refresh token (server running at port 8088 ): http://localhost:8090/api/token/
 
-2. Refresh access token ( using the refresh token obtained in step 1 ) The url for a new access token by posting the refresh token (server running at port 8088 ): http://localhost:8088/api/token/refresh/
+2. Refresh access token ( using the refresh token obtained in step 1 ) The url for a new access token by posting the refresh token (server running at port 8090 ): http://localhost:8090/api/token/refresh/
 
-3. Verify token ( using the access token or the refresh token from step 1 or step 2 ). The url for verifying a token (server running at port 8088 ): http://localhost:8088/api/token/verify/
+3. Verify token ( using the access token or the refresh token from step 1 or step 2 ). The url for verifying a token (server running at port 8090 ): http://localhost:8090/api/token/verify/
    If the token is valid or not expired, an empty response is returned.  Otherwise, an error message is returned.
 
 You can easily test if the endpoint returns a response by submitting the following commands in your terminal.  Remember that you must have a user created with the username admin and password password123 for the request to work.  
@@ -183,7 +184,7 @@ Follow the prompts and add a superuser with name admin and password password123.
 
 Test Obtain Token:
 
-$ curl -X POST -d "username=admin&password=password123" http://localhost:8088/api/token/
+$ curl -X POST -d "username=admin&password=password123" http://localhost:8090/api/token/
 
 {"refresh":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTYxOTcxMjM3MiwianRpIjoiMGYyMTUwNmM1ZWE4NGE3M2EyZDMwYzRhMzEwNDQ1ODEiL
 CJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6Im1vbmljYSIsInN1YiI6Ik1wZGJVc2VyIiwiYXVkIjoiTXBkYlVzZXJzIiwiaXNzIjoiTXBkYlJlc3RBUEkifQ.FGFY4SjvjqU852IBHAhCpqjww21dvcML8AqgavXY
@@ -193,7 +194,7 @@ SJ9.kY5kRcT-FKg6z4hfS8Yt7RoNpBsWhptre_f5MMLBxGcD51dPAMs88d2TXi63D2F5LDTaVoQiNvr6
 
 Test Obtain Token:
 
-$ curl -X POST -H "Content-Type: application/json" -d '{"username":"admin","password":"password123"}' http://localhost:8088/api/token/
+$ curl -X POST -H "Content-Type: application/json" -d '{"username":"admin","password":"password123"}' http://localhost:8090/api/token/
 
 {"refresh":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTYxOTcxMjQ5MCwianRpIjoiY2QzMjAzYTg2MzA5NGRhMmE1NDc2ZmEzYzRmYjY3MzQiL
 CJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6Im1vbmljYSIsInN1YiI6Ik1wZGJVc2VyIiwiYXVkIjoiTXBkYlVzZXJzIiwiaXNzIjoiTXBkYlJlc3RBUEkifQ.XL6pk-_eG72xY-rmn8c-zE1d6KI9qkgjv7bvW2q6
@@ -203,7 +204,7 @@ SJ9.DvEd2CnEp6cHR2Oj63jMf66WZ572jkD41qUWY4Iqb4ZrYdSu492TwwxDpV1Lf2l6-XHOpnAiQSAw
 
 Test Token Refresh by posting the refresh token from Otain Token:
 
-$ curl -X POST -H "Content-Type: application/json" -d '{"refresh":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTYxOTcxMjQ5MCwianRpIjoiY2QzMjAzYTg2MzA5NGRhMmE1NDc2ZmEzYzRmYjY3MzQiLCJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6Im1vbmljYSIsInN1YiI6Ik1wZGJVc2VyIiwiYXVkIjoiTXBkYlVzZXJzIiwiaXNzIjoiTXBkYlJlc3RBUEkifQ.XL6pk-_eG72xY-rmn8c-zE1d6KI9qkgjv7bvW2q6jBRjKe4qUcIDhWEssPchYYa79oKAHsPofGPFfxS7FSUNCA"}' http://localhost:8088/api/token/refresh/
+$ curl -X POST -H "Content-Type: application/json" -d '{"refresh":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTYxOTcxMjQ5MCwianRpIjoiY2QzMjAzYTg2MzA5NGRhMmE1NDc2ZmEzYzRmYjY3MzQiLCJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6Im1vbmljYSIsInN1YiI6Ik1wZGJVc2VyIiwiYXVkIjoiTXBkYlVzZXJzIiwiaXNzIjoiTXBkYlJlc3RBUEkifQ.XL6pk-_eG72xY-rmn8c-zE1d6KI9qkgjv7bvW2q6jBRjKe4qUcIDhWEssPchYYa79oKAHsPofGPFfxS7FSUNCA"}' http://localhost:8090/api/token/refresh/
 
 {"access":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjE5NzEyMjY4LCJqdGkiOiIyODlkMjkwY2RiNjY0MTJjYTUzNzVjMDcwMGY0ODUwMCIsIn
 VzZXJfaWQiOjEsInVzZXJuYW1lIjoibW9uaWNhIiwic3ViIjoiTXBkYlVzZXIiLCJhdWQiOiJNcGRiVXNlcnMiLCJpc3MiOiJNcGRiUmVzdEFQSSJ9.ppPOSPGZf4tDkijRfBjuMutpu0yhtK2Z_ZdOyTqsbU1
@@ -213,19 +214,19 @@ ifQ.v0_ZHtRGBeaLW1IDcxcJeTDK1YT0Ne4QPgnrYQwnKkj_diDc8LB9SPwmJeN4kBvmH57miHR0QnW2
 
 Test access token verify:
 
-$ curl -X POST -H "Content-Type: application/json" -d '{"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTYxOTcxMjQ5MCwianRpIjoiY2QzMjAzYTg2MzA5NGRhMmE1NDc2ZmEzYzRmYjY3MzQiLCJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6Im1vbmljYSIsInN1YiI6Ik1wZGJVc2VyIiwiYXVkIjoiTXBkYlVzZXJzIiwiaXNzIjoiTXBkYlJlc3RBUEkifQ.XL6pk-_eG72xY-rmn8c-zE1d6KI9qkgjv7bvW2q6jBRjKe4qUcIDhWEssPchYYa79oKAHsPofGPFfxS7FSUNCA"}' http://localhost:8088/api/token/verify/
+$ curl -X POST -H "Content-Type: application/json" -d '{"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTYxOTcxMjQ5MCwianRpIjoiY2QzMjAzYTg2MzA5NGRhMmE1NDc2ZmEzYzRmYjY3MzQiLCJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6Im1vbmljYSIsInN1YiI6Ik1wZGJVc2VyIiwiYXVkIjoiTXBkYlVzZXJzIiwiaXNzIjoiTXBkYlJlc3RBUEkifQ.XL6pk-_eG72xY-rmn8c-zE1d6KI9qkgjv7bvW2q6jBRjKe4qUcIDhWEssPchYYa79oKAHsPofGPFfxS7FSUNCA"}' http://localhost:8090/api/token/verify/
 
 {}
 
 Test refresh token verify:
 
-$ curl -X POST -H "Content-Type: application/json" -d '{"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjE5NzEyMjY4LCJqdGkiOiIyODlkMjkwY2RiNjY0MTJjYTUzNzVjMDcwMGY0ODUwMCIsInVzZXJfaWQiOjEsInVzZXJuYW1lIjoibW9uaWNhIiwic3ViIjoiTXBkYlVzZXIiLCJhdWQiOiJNcGRiVXNlcnMiLCJpc3MiOiJNcGRiUmVzdEFQSSJ9.ppPOSPGZf4tDkijRfBjuMutpu0yhtK2Z_ZdOyTqsbU1q5tRUZsaciysmFUEKKwjvg4LQaYPF7BPyKeqR6-_U3w"}' http://localhost:8088/api/token/verify/
+$ curl -X POST -H "Content-Type: application/json" -d '{"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjE5NzEyMjY4LCJqdGkiOiIyODlkMjkwY2RiNjY0MTJjYTUzNzVjMDcwMGY0ODUwMCIsInVzZXJfaWQiOjEsInVzZXJuYW1lIjoibW9uaWNhIiwic3ViIjoiTXBkYlVzZXIiLCJhdWQiOiJNcGRiVXNlcnMiLCJpc3MiOiJNcGRiUmVzdEFQSSJ9.ppPOSPGZf4tDkijRfBjuMutpu0yhtK2Z_ZdOyTqsbU1q5tRUZsaciysmFUEKKwjvg4LQaYPF7BPyKeqR6-_U3w"}' http://localhost:8090/api/token/verify/
 
 {}
 
 Test an invalid/expired token:
 
-$ curl -X POST -H "Content-Type: application/json" -d '{"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjE5NzEyMjY4LCJqdGkiOiIyODlkMjkwY2RiNjY0MTJjYTUzNzVjMDcwMGY0ODUwMCIsInVzZXJfaWQiOjEsInVzZXJuYW1lIjoibW9uaWNhIiwic3ViIjoiTXBkYlVzZXIiLCJhdWQiOiJNcGRiVXNlcnMiLCJpc3MiOiJNcGRiUmVzdEFQSSJ9.ppPOSPGZf4tDkijRfBjuMutpu0yhtK2Z_ZdOyTqsbU1q5tRUZsaciysmFUEKKwjvg4LQaYPF7BPyKeqR6-_U3"}' http://localhost:8088/api/token/verify/
+$ curl -X POST -H "Content-Type: application/json" -d '{"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjE5NzEyMjY4LCJqdGkiOiIyODlkMjkwY2RiNjY0MTJjYTUzNzVjMDcwMGY0ODUwMCIsInVzZXJfaWQiOjEsInVzZXJuYW1lIjoibW9uaWNhIiwic3ViIjoiTXBkYlVzZXIiLCJhdWQiOiJNcGRiVXNlcnMiLCJpc3MiOiJNcGRiUmVzdEFQSSJ9.ppPOSPGZf4tDkijRfBjuMutpu0yhtK2Z_ZdOyTqsbU1q5tRUZsaciysmFUEKKwjvg4LQaYPF7BPyKeqR6-_U3"}' http://localhost:8090/api/token/verify/
 
 {"detail":"Token is invalid or expired","code":"token_not_valid"}
 
@@ -246,48 +247,48 @@ The error message returned is:
 
 The framework DOES NOT automatically authorize access to the hello and student services when requests for the hello and students resources are submitted via browser. When these endpoints are accessed via browser, an error message is returned:  "detail": "Authentication credentials were not provided."
 
-1. http://localhost:8088/hello/
-2. http://localhost:8088/students/
-3. http://localhost:8088/students/1
+1. http://localhost:8090/hello/
+2. http://localhost:8090/students/
+3. http://localhost:8090/students/1
 
 # Test protection of api resources with Bearer JWT Token:
 
 In order to access protected resource via restufl api urls you must include the Authorization: Bearer <your_token> header.  The default prefix can be overridden in settings.py with JWT_AUTH_HEADER_PREFIX = <YOUR_AUTH_HEADER>.
 
-$ curl -H "Content-Type: application/json" -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjE4OTYxNzM0LCJqdGkiOiIyZTMxNzc1NzNjOWM0MzgxOTYwMGNlNmIxNjNjNzUwNSIsInVzZXJfaWQiOjUsImF1ZCI6Ik1wZGJVc2VycyIsImlzcyI6Ik1wZGJSZXN0QVBJIn0.nwKjo4jGWbegZmz0dGoUIieqxeoryGdJlmN9gd33__Co1iIho6H2YbtAXp5eLyE-K7ZdhUnnVbyCNtxka4wQpQ" -X GET  http://localhost:8088/hello/
+$ curl -H "Content-Type: application/json" -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjE4OTYxNzM0LCJqdGkiOiIyZTMxNzc1NzNjOWM0MzgxOTYwMGNlNmIxNjNjNzUwNSIsInVzZXJfaWQiOjUsImF1ZCI6Ik1wZGJVc2VycyIsImlzcyI6Ik1wZGJSZXN0QVBJIn0.nwKjo4jGWbegZmz0dGoUIieqxeoryGdJlmN9gd33__Co1iIho6H2YbtAXp5eLyE-K7ZdhUnnVbyCNtxka4wQpQ" -X GET  http://localhost:8090/hello/
 
 {"message":"Hello, World!"}
 
 Test protection of the hello resource WITHOUT Bearer JWT Token:
 
-$ curl -X GET http://localhost:8088/hello/
+$ curl -X GET http://localhost:8090/hello/
 
 {"detail":"Authentication credentials were not provided."}
 
 Test protection of the students list resource with Bearer JWT Token:
 
-$ curl -H "Content-Type: application/json" -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjE4OTYxNzM0LCJqdGkiOiIyZTMxNzc1NzNjOWM0MzgxOTYwMGNlNmIxNjNjNzUwNSIsInVzZXJfaWQiOjUsImF1ZCI6Ik1wZGJVc2VycyIsImlzcyI6Ik1wZGJSZXN0QVBJIn0.nwKjo4jGWbegZmz0dGoUIieqxeoryGdJlmN9gd33__Co1iIho6H2YbtAXp5eLyE-K7ZdhUnnVbyCNtxka4wQpQ" -X GET  http://localhost:8088/api/students/
+$ curl -H "Content-Type: application/json" -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjE4OTYxNzM0LCJqdGkiOiIyZTMxNzc1NzNjOWM0MzgxOTYwMGNlNmIxNjNjNzUwNSIsInVzZXJfaWQiOjUsImF1ZCI6Ik1wZGJVc2VycyIsImlzcyI6Ik1wZGJSZXN0QVBJIn0.nwKjo4jGWbegZmz0dGoUIieqxeoryGdJlmN9gd33__Co1iIho6H2YbtAXp5eLyE-K7ZdhUnnVbyCNtxka4wQpQ" -X GET  http://localhost:8090/api/students/
 
 [{"pk":1,"first_name":"Alberto","last_name":"Dinardi","email":"dinardi@gmail.com","classroom":"Data Structures Java"},{"pk":2,"first_name":"Gemma","last_name":"Crane","emai
 l":"voci@gmail.com","classroom":"Advertising"}]
 
 Test protection of the students list resource WITHOUT Bearer JWT Token:
 
-$ curl -X GET http://localhost:8088/api/students/
+$ curl -X GET http://localhost:8090/api/students/
 
 {"detail":"Authentication credentials were not provided."}
 
 Test protection of a student (pk required) resource with Bearer JWT Token:
 
 $ curl -H "Content-Type: application/json" -H "Authorization: Bearer 
-eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjE4OTYxNzM0LCJqdGkiOiIyZTMxNzc1NzNjOWM0MzgxOTYwMGNlNmIxNjNjNzUwNSIsInVzZXJfaWQiOjUsImF1ZCI6Ik1wZGJVc2VycyIsImlzcyI6Ik1wZGJSZXN0QVBJIn0.nwKjo4jGWbegZmz0dGoUIieqxeoryGdJlmN9gd33__Co1iIho6H2YbtAXp5eLyE-K7ZdhUnnVbyCNtxka4wQpQ" -X GET  http://localhost:8088/api/students/1
+eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjE4OTYxNzM0LCJqdGkiOiIyZTMxNzc1NzNjOWM0MzgxOTYwMGNlNmIxNjNjNzUwNSIsInVzZXJfaWQiOjUsImF1ZCI6Ik1wZGJVc2VycyIsImlzcyI6Ik1wZGJSZXN0QVBJIn0.nwKjo4jGWbegZmz0dGoUIieqxeoryGdJlmN9gd33__Co1iIho6H2YbtAXp5eLyE-K7ZdhUnnVbyCNtxka4wQpQ" -X GET  http://localhost:8090/api/students/1
 
 [{"pk":1,"first_name":"Alberto","last_name":"Dinardi","email":"dinardi@gmail.com","classroom":"Data Structures Java"},{"pk":2,"first_name":"Gemma","last_name":"Crane","emai
 l":"voci@gmail.com","classroom":"Advertising"}]
 
 Test protection of a student (pk required) resource with Bearer JWT Token:
 
-$ curl -X GET http://localhost:8088/api/students/1
+$ curl -X GET http://localhost:8090/api/students/1
 
 {"detail":"Authentication credentials were not provided."
 
