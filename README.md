@@ -125,6 +125,7 @@ LOGIN_URL = 'http://localhost:8090/users/login'
   python manage.py createsuperuser (enter the username & password to use when requesting a token)
 
   python manage.py runserver 8090
+
 8. Access the admin console with the superuser name and password ( step 7 ) and select sites.  Modify the the DOMAIN NAME to 127.0.0.1:8080 ( host address and port number where the application is running) and the DISPLAY NAME (name of the application ).  The domain name and display name will appear in the email that the app admin sends to registering users to verify their email address.
   
 # Test protected resources by django-allauth and dj-rest-auth endpoints
